@@ -1,0 +1,26 @@
+before we created an object and stored in a map
+if we call the same key twice we will same object
+-> this is called single ton factory pattren
+-> it is safe to use when class has no varibles
+class Example
+{
+  public int add(int a,int b)
+  {
+    return a+b;
+  }
+}
+
+-> here it is safe because we dont have any variables in the class but 
+if we have variables then it is not safe to use single ton factory pattren
+because if we call the same key twice we will get the same object and 
+if we change the variable in one object it will change in another object also because they are same object.
+
+so insted of store an object we stored the way to create the new 
+object
+
+that is with Supplier<T> interface
+-> we no need to create that interface
+interface Supplier<T>
+{
+  T get();
+}

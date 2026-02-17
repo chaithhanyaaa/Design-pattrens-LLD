@@ -1,0 +1,103 @@
+-> Actually in an entire program we need to have only single object
+
+-> why???
+
+-> assume there is an system confuguration object which represent the state
+class Config{
+  int state=10
+}
+
+-> if we make 2 objects
+Config c1=new Config();
+Config c2=new Config();
+c1.state=20;
+c2.state=30;
+
+so if multiple threads we have so they dont know which state is real
+-> so we need to have only single object which represent the state of the system
+
+-> so inorder to stop creating objects we will the constructor private
+so they will get compile time error
+
+class Config{
+  int state=10;
+  private Config(){
+  }
+}
+
+-> but now we have another problem how to create the object if the constructor is private
+-> so we will create a static method which will return the object of the class
+
+class Config{
+  int state=10;
+  private static Config instance;
+  private Config(){
+  }
+  public static Config getInstance(){
+    if(instance==null){
+      instance=new Config();
+    }
+    return instance;
+  }
+}
+
+
+-> we have nt solved the problem
+
+class Th extend Thread{
+  public void run(){
+    Config c=Config.getInstance();
+    System.out.println(c.state);
+  }
+}
+
+
+psvm{
+  Th t1=new Th();
+  Th t2=new Th();
+  t1.start();
+  t2.start();
+}
+
+
+-> t1 calls the getconfig methode and check if instance is null
+it got true ,now context switch happens and t2 also calls the methode 
+it also gets true and creates the objct and now context switch happend also
+creates the object and now we have 2 objects which is not what we want
+
+
+-> so the solution is making the methode synchronized
+
+static synchronized Config getInstance(){
+    if(instance==null){
+      instance=new Config();
+    }
+    return instance;
+  }
+-> but it is not optimal because every time we call its locked
+even object is created and all the threads will be waiting for the lock
+-> for the first time all the threds need to need to wait (locked)
+-> when they go second time still they need to wait because the method is synchronized
+
+
+-> so we want only lock for the first time when the object is geting created 
+static Config getInstance(){
+    if(instance==null){
+      synchronized(Config.class){
+        if(instance==null){
+          instance=new Config();
+        }
+      }
+    }
+    return instance;
+  }
+
+  -> when the first time all threads reach the both and passes the first check and one goes inside 
+  rest need to wait then first thread passes the second check also
+  so it creates the object and then the rest of the threads who are at 
+  waiting goes into the second check and they get failed
+
+  ->now object is created ,this time now even multiple threads call the methode they can go inside all at time
+  but first check will fail and they will return the ha
+
+

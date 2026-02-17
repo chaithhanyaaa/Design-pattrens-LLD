@@ -1,0 +1,15 @@
+-> since we have only one type in Bmw that is bmw 
+we did nt go for map here,other we would need to make 
+all the classes for different types
+
+-> if any new Car brand comes we just make a class that extends vehicle 
+no need of if else or voilation of open closed principle.
+
+-> if any new car brand comes we just need to make a new factory class
+that implements VehicleFactory and override createVehicle method
+
+-> here any new car comes Main does nt need to change because we are using 
+factory provider to get the factory and factory provider is not changing because we are 
+using map to store the factories.following 5th princliple that is Dependency inversion 
+principle and 2nd princle that is open closed principle.
+  

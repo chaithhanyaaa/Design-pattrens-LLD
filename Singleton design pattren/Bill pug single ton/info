@@ -1,0 +1,4 @@
+-> two threads at a time call getinstance class and sees
+holder.instance which is not loaded yet so jvm locks the other 
+threads internally without synchronization and loads the holder class and creates the instance and returns it to both threads 
+and then the next time when any thread calls getinstance it will see the instance is already created and returns it without locking

@@ -1,0 +1,13 @@
+->so each Main represents a each user,
+so i wanna make any changes i would need to change 
+every Main class if i were not using Factory,
+now factory is the centralized one ,
+if any changes needed i just make that alone in the factory
+
+
+->advantages
+
+->encasulation:we are not worrying how object is created ,
+how the object is created is abstracted,this makes system easier to manage
+
+->Scalability:if we wanna add new any new vechile we can simplly add in the factory

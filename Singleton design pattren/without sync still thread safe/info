@@ -1,0 +1,8 @@
+we are just not letting create an object making construtr pvt
+-> but we still need an object so we created an object 
+als that is final and static ,so when class is loaded it creates that
+-> it is still thread safe
+-> only disadavantage is object is created even sometimes we dont use that
+it makes problem when the object is huge
+
+-> only jvm loads the class not threads

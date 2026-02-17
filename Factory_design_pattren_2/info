@@ -1,0 +1,16 @@
+before we had code in the factory like
+if(type.equal("car"))
+{
+  //code
+}
+else if(type.equal("truck"))
+{
+  //code
+}
+
+
+what if in the future we want to add more vehicles like bike, 
+bus etc. then we have to keep on adding more
+ else if statements in the factory class which is not a good design.
+So to avoid this we can use a map to store the vehicle types and their corresponding objects. 
+This way we can easily add new vehicle types without modifying the factory class.

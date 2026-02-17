@@ -1,0 +1,30 @@
+Scenario
+
+You are designing a Payment system.
+There are payment methods:
+
+UPI
+Card
+
+Each payment has:
+
+pay() method
+
+👉 BUT there is a new rule:
+
+There are two regions:
+
+INDIA
+
+US
+
+Rules:
+
+In INDIA → use IndianUPI, IndianCard
+
+In US → use USUPI, USCard
+
+⚠️ Important:
+
+You must NOT mix regions
+(e.g., IndianUPI + USCard ❌)
