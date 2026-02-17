@@ -1,0 +1,20 @@
+-> Goal:creating a new object just by cloning the existing object
+because sometimes creating a new one is costly ,complex or requires lof setup
+
+-> we usually in jdbc create a new connection for every request and closes immediatly
+after the rqst is done,but that connection creation very complex
+DriverManager.getConnection()
+1. open socket
+2. authenticate
+3. handshake
+4. create session
+
+-> Does protype solves JDBC?
+JDBC does NOT use Prototype pattern for Connection objects.
+A DB connection cannot be cloned safely
+Cloning would copy:transaction state,cursor state,session state
+this would leads to corruption
+-> so the solution is connection pooling
+
+
+->Now image getting details from the db to create an object takes tyme ,so we just create an object by cloning the previous object and modify just what we want -so creation takes less time.
