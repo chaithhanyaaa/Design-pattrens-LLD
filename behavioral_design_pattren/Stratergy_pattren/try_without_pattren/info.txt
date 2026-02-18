@@ -1,0 +1,5 @@
+-> imagine we have a payment service that accepts creditcard,upi etc
+-> so will have classes 
+1. creditcard.java
+2.Upi.java
+-> we have Payment processor
