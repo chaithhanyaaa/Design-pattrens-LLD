@@ -1,0 +1,9 @@
+-> here we did not use any pattren
+-> issues are with tight coupling means Youtube channel knows the users 
+so if tommorrow any new user comes like premium users ,it may leads updation
+of the YoutubeChannel class which violets the open closed principle
+-> also we are just sending notifications to all the users ,some may not be clicked
+the bell icon so we need to have diff kinda users like 
+1.premium users
+2.admin users
+3.bellicom users
