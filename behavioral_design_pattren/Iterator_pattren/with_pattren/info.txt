@@ -1,0 +1,4 @@
+-> now here we can freely change the data structure
+with modifying existing methode
+-> also if we need any specific iterator we make a class and the 
+function which doesnt violet open closed principle
