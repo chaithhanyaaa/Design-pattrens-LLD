@@ -1,0 +1,48 @@
+-> In this implementation, the UserCollection class directly stores users
+and also handles the logic for iterating over them.
+
+-> The client (Main class) depends on the internal data structure of
+UserCollection (for example, List and index-based access).
+
+-> If the internal data structure changes (List to Set or HashMap),
+the iteration logic in the client or collection must also be changed.
+
+-> Iteration logic and data storage logic are mixed together,
+which violates the Single Responsibility Principle.
+
+-> This approach works for small and simple use cases,
+but it is not flexible or scalable when collection types change.
+
+
+-> Without using the Iterator Pattern, iteration logic is tightly coupled
+with the collection’s internal data structure.
+Any change in the data structure requires changes in iteration code.
+
+
+-> This approach fails when the internal data structure of the collection
+changes, such as from List to HashMap, because iteration logic depends
+on the structure.
+
+-> It also fails when multiple traversal styles are required, leading to
+duplicate and hard-to-maintain loops.
+
+-> Modifying the collection while iterating can cause runtime errors
+and inconsistent behavior.
+
+-> Iteration logic is tightly coupled with data storage, violating
+Single Responsibility Principle and making the code difficult to extend.
+
+
+-> exmaple sutuation when it fails
+
+-> assume we have just name,so in future we got new attributes like is active 
+-> now we need to add another logic 
+-> for(int i=0;i<li.size();i++)
+{
+  if(li.get(i).isactive)
+  {
+    print(li.get(i));
+  }
+}
+
+-> this violates open closed principle
