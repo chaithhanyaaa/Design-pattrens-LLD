@@ -1,0 +1,17 @@
+FOLDER: functional-interface-lambda-exp
+
+1. WHAT IS A FUNCTIONAL INTERFACE?
+- An interface with EXACTLY one abstract method.
+- Known as SAM (Single Abstract Method) interface.
+- It can have multiple 'default' or 'static' methods.
+- The @FunctionalInterface annotation ensures the compiler prevents adding a second abstract method.
+
+2. WHAT IS A LAMBDA EXPRESSION?
+- It is an anonymous function (a function without a name).
+- It allows you to treat "code as data" or pass "behavior" as an argument.
+- It completely eliminates the need for Anonymous Inner Classes for functional interfaces.
+
+3. WHY DID JAVA INTRODUCE THIS?
+- To support Functional Programming.
+- To make code more concise and readable.
+- To leverage multicore CPUs using Parallel Streams (easier with Lambdas).
