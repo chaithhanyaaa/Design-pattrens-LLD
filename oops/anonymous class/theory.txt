@@ -1,0 +1,14 @@
+---------ANONYNOUS INNER CLASS-----------
+
+-> an inner class without a name which is used to instantiate an object with certain  extras with actually 
+creating separate  .java file.
+
+
+
+->In Java, you often need an object that implements an interface or extends a class just once.
+Example: A button click handler or a specific sorting logic for a list.
+-> The Old Way: Create a new file MyHandler.java, implement the interface, then instantiate it.
+-> The Anonymous Way: Why create a whole file for just 2 lines of logic? Just define it "on the fly" right where you need it.
+
+-> Less Boilerplate: You don't have to create separate classes for simple, one-time tasks.
+-> Local Scope: The logic stays exactly where it is used, making the code easier to follow (sometimes).
