@@ -1,0 +1,14 @@
+-> The Thought Process: We need to stop the UI from talking directly to the Document. Instead, we create a Mediator (the Command Object).
+-> The "Aha!" Moment: Now, the UI only knows how to call execute(). The "Mediator" code is the only place that knows the real method name inside the Document.
+-> The Result: Even if the main method name changes in the backend, we only change it once inside the Command class. The UI code remains untouched and safe.
+
+
+1. Without the Pattern (The "Manual" Way)
+-> If you have 3 buttons (Top Bar, Right-Click Menu, and Keyboard Shortcut) all doing "Upper Case":
+-> Code Duplication: You write doc.toUpperCase() in three different places.
+-> The Problem: If the backend developer renames the method to doc.applyCapitalize(), you have to hunt down all 3 places. If you miss one, that button becomes a "dead" button (a bug).
+
+2. With the Pattern (The "Smart" Way)
+-> You create one object: upperCaseCommand.
+-> Code Reusability: You give that same upperCaseCommand object to all 3 buttons.
+-> The Solution: If the backend method name changes, you go to the Command class, change the line once, and boom—all 3 buttons are fixed instantly.
