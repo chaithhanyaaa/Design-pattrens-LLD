@@ -1,0 +1,9 @@
+Gemini said
+Here is the corrected and refined version of your thought process. I’ve structured it so it's easy to read and serves as a great reference for your future study.
+
+The Problem: Direct Coupling
+The Issue: Our UI buttons (like UpperButton and LowerButton) are directly connected to the Document methods.
+
+The Mess: Imagine we have "ToUpperCase" buttons in multiple places (Header, Menu, Footer). We end up writing the same execution code multiple times.
+
+The Maintenance Nightmare: If the backend method name changes in the Document class (e.g., from toUpperCase() to applyUpper()), we have to manually find every single piece of UI code where that method was used and change it. This is irritating, error-prone, and not a good practice.
