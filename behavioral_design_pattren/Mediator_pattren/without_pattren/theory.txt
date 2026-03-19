@@ -1,0 +1,20 @@
+❌ 1. Tight Coupling
+👉 Each user depends on:
+Other User objects
+If structure changes → everything breaks
+
+❌2. Adding new User is painFull,because every user is connected to every other user.
+
+❌3.no central control,Right now:
+chaithanya sends messages directly
+maheshbabu sends directly
+ramcharn sends directly
+👉 There is no single place controlling communication
+-> suppose if you add any logic like blocking spam msg you write code in the sendMsg function
+it looks fine if we make any new user like adminUser class  again we need to write same logic in that class.
+-> if logic is changed again we need change the code wherever we have the logic,alos code duplication happens automaticslly 
+
+❌ 4. Not scalable
+If users = N
+Connections ≈ N²
+👉 Very bad for large systems
