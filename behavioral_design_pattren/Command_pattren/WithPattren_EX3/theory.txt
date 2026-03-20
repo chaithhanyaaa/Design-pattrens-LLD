@@ -1,0 +1,12 @@
+-> in last example we have made 
+TVOn()
+TVOff()
+LightOn()
+LightOff()
+
+-> issue is here for every operation we are creting a class ,so if incase there are 
+20 -30 operations we have to make those many classes,which is not good
+
+
+-> to solve this we just used the feature of java 8 that is creating anonmous classes using lamda functions and hashMap
+here smart remote is like factore class in factory methode ,but that provedes the object here it just does something
