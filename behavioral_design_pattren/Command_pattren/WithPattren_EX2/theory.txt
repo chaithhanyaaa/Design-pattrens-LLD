@@ -1,0 +1,39 @@
+-> before in regukar way ,we did not have any remote.
+-> we have tv on ,tv off methode in TV class from the main we used to create
+  Tv tv=new TV();
+  tv.on();
+  Light light=new Light();
+  light.on
+
+-> issue is Main knows the Light and TV directly which is not good
+-> when we Light class has changed the on methode to powerOn() now we need to change 
+the main code.image we have used light.on in main multiple times ,we need to find all the on() and edit it
+
+-> so what we do is we create the Command interface which has execute methode ,so now 
+even the methode name gets changed we just upadte that in LightOn class ,we no need to touch the remote and main
+because we use lightonObj.execute() only.
+
+              Light(on,off)     TV(on,off)
+ commands: LightOn  LightOff   TVOn    TVOff
+                            remote
+                             Main
+
+-------------------------------------------------------------------------------------------------------------------------
+
+-> here we have only on,off for both light and TV
+-> if incase we waxnt channlechange that takes the int value
+-> now in TV we have ChangeChannel(int channel) methode
+-> in ChangeChannel class we have  to give in constructor
+        ChangeChannel(int channel,TV tv)
+        {
+          this.channel=channel;
+          this.tv=tv;
+          
+        }
+        public void execute()
+        {
+          tv.ChangeChannel(channel);
+        }
+
+
+ ->so for evry channel change we have to create new obj;
