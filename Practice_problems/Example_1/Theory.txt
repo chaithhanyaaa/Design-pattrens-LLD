@@ -1,0 +1,72 @@
+Problem Statement:Simple Music Player
+-> features:playnext song
+            play previous song
+-> Modes:   Normal
+            Shuffle
+            Reapeate
+
+----------------------------------------------------------------------
+
+Breaking down:
+1. what are the main actors(classes) in the sytem?
+-> Music Player(main controller)
+  song(data)
+  mode(behavior)
+
+
+2.Responsibilities of each classe
+-> plays songs()
+   next song()
+   previous song()
+   pause()
+   decides the mode()
+-> to play song we need song variable,to got the next song we need playlist of songs,to change 
+the mode we need a mode variable
+
+
+3.Song can be Song data type,Plalist has Songs,now if mode is a string i need to have an if else 
+for sure which is not good to extend later ,to avoid this we need some thing has behavior,so we will have 
+classes like Normal,shuffel,repate which implments the interface mode.
+-> so playlist asks the mode gimme the next song ,but how can mode knows the next song,so we pass the playlist as 
+an arg.
+-> so each class should have getNextSong(list),getPreviousSong(list);
+-> but the mode should know the current song to give the previous or the next song,if we give the song as arg
+the fucmtions in the mode class has to iterate the list and find the next class which takes o(n),so we pass the index of the current
+song ,so it automalically gives the netx song. 
+-> so getNextSong should return the index of the next ,but should not return the song ,song should be decided by the music player.
+
+
+4.how shuffle logic works ?
+-> (currentIndex + randomNumber) % list.size()
+-> here to get the random song ,current song should not effects the next song,this may give same index again.
+-> so random index between(0,list.size()-1);
+
+
+--------------------------------------------------------------------------------------------
+
+MusicPlayer()
+-> Song song
+-> ArrayList<Song> playlist
+-> int index
+-> Mode mode
+-> void setMode(Mode mode)
+-> int next(){ mode.getNextSong(playlist,index) };
+-> int previous(){ mode.getPreviousSong(playlist,index)};
+
+Song()
+-> String song
+-> String artist
+
+interface Mode()
+-> int getNextSong()
+-> int getPreviousSong()
+
+-> ShuffleMode() implments Mode()
+-> NormalMode() implments Mode()
+-> RepeateMode() implments Mode()
+
+
+---------------------------------------------------------------------------------------------
+WE HAVE USED STRATERGY PATTREN HERE
+
+“Strategy Pattern to handle different playback behaviors like shuffle, repeat, etc.”
