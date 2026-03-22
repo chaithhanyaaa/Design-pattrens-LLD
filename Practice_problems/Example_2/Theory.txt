@@ -1,0 +1,59 @@
+Problem Statement:
+-> Imagine you are building a system for a small parking lot.
+
+🔹 1. Vehicle Entry
+When a vehicle comes:
+👉 System should:
+Find an available parking spot
+Assign that spot to the vehicle
+Mark that spot as occupied
+
+🔹 2. Vehicle Exit
+When a vehicle leaves:
+👉 System should:
+Free the parking spot
+Mark it as available again
+
+🔹 3. Vehicle Types
+We have:
+Car 🚗
+Bike 🏍️
+👉 For now:
+Don’t overcomplicate (no size constraints yet)
+
+🔹 4. Parking Spots
+Fixed number of spots
+Each spot can be:
+Empty
+Occupied
+
+🔹 5. Parking Strategy (IMPORTANT 🔥)
+When a vehicle enters:
+👉 How do we choose a spot?
+We support:
+Nearest available spot
+Random spot
+
+-------------------------------------------------------------------------------------------------------------
+
+Problem Breakdown:
+-> Enities:Car,Bike,PatkingLot,ParkingSpot,Vechile interface
+
+-> ParkingSpot:may be it has something like  boolean state (free or occuped),ID,vechile type.
+-> ParkingLot:List<Spot> spots,Park(Vechile v),unParkVehicle(Spot s)
+
+✅ Vehicle abstraction
+Instead of List<Car>, List<Bike> → use Vehicle
+✔️ This is perfect OOP design
+✔️ Avoids duplication
+✔️ Easily extensible
+
+-> here in Park(Vechile v) ,bais c code is if(type.equals("nearest)){} else{}
+it is very hard to extend ,so we need some Stratergy pattren here
+
+-> interface Startergy{
+  Spot findSpot(list<Spot>,v);
+}
+
+-> Vehicle should not know the spot ,but how can we unpark just by giving the Vehicle as the arg,so 
+Parling lot should know,it uses HashMap<Vehicle,Spot>
