@@ -1,0 +1,103 @@
+problem statement:
+-> Think of a traffic light at a junction.
+
+It has 3 states:
+🔴 Red → Stop
+🟢 Green → Go
+🟡 Yellow → Slow down
+
+---------------------------------------------------
+🎯 Behavior Changes Based on State
+Current State	Action: next()
+Red	Green
+Green	Yellow
+Yellow	Red
+
+-----------------------------------------------------
+
+We have:
+A system (TrafficLight)
+A method → next()
+Behavior depends on current state
+
+-----------------------------------------------------
+
+ISSUE :
+
+-> code duplication in both the methods ,same checking if color is red ,else if color is yellow ,yellow
+-> this is happening because, state is  just a data ,it does not have any Behavior
+
+solution:
+-> current in show methode we are using if ,instead we want something like state.showcolor(),state.next();
+-> to make it possible is we need a state interface, here states are red, green, yellow
+-> so will make red, yellow, green classes that has next() and show() methods then we can simply do that.
+
+-> if in future any new colors comes we can simply add new class that implements the state interface ,now we need to update ehe colors 
+before: red -> green -> yellow
+after : red -> blue -> green -> yellow
+-> here modification is accepted ,because business logic itself changed so we have to change
+
+
+------------------------------------------------------------------------
+ADVANCED OPTIMIZATION:
+
+-> here Red class has link with green class as it is directly setting in its next() methode,
+which is tightly coupled.
+
+-> make it loose coupling 
+
+-> Traffic light has all three colors
+
+class TrafficLight {
+
+    State redState;
+    State greenState;
+    State yellowState;
+
+    private State currentState;
+
+    public TrafficLight() {
+        redState = new RedState();
+        greenState = new GreenState();
+        yellowState = new YellowState();
+
+        currentState = redState; // initial
+    }
+
+    public void setState(State state) {
+        this.currentState = state;
+    }
+
+    public State getRedState() {
+        return redState;
+    }
+
+    public State getGreenState() {
+        return greenState;
+    }
+
+    public State getYellowState() {
+        return yellowState;
+    }
+
+    public void next() {
+        currentState.next(this);
+    }
+
+    public void showSignal() {
+        currentState.showSignal();
+    }
+}
+
+
+class Red implements State{
+  public void next(TrafficLisght tf)
+  {
+    tf.setState(tf.getGreenState());
+  }
+
+  public void show()
+  {
+    system.out.println("red");
+  }
+}
