@@ -1,4 +1,4 @@
--> before in regukar way ,we did not have any remote.
+-> before in regular way ,we did not have any remote.
 -> we have tv on ,tv off methode in TV class from the main we used to create
   Tv tv=new TV();
   tv.on();
@@ -37,3 +37,64 @@ because we use lightonObj.execute() only.
 
 
  ->so for evry channel change we have to create new obj;
+
+ -----------------------------------------------------------------------------
+->actually Light class has on() off(),in Main we can directly create the Light light =new Light()
+-> we can simply light.on();
+-> issue is ,say if on() methode changes to power() ,now we might have unsed  obj.on() multiple times so we need to
+find all and update ,so we will have some middle man that takes the light obj and on it,now even if methode changes ,it does nt effect ,
+now we can simply udate in that middle man.
+-> now new problem is if we have Light,fan,tv-lighton clas may have on methode,fanon class may have start,now evry methode name 
+we need to know ,so we introduce the polymorphism here (interface that have execute command) all classes
+implements it.
+-> now they all have commond type,we can even store all the objects in the arraylist of the interface type.
+
+-> now can have 
+Light light=new Light();
+Lighton lighton=new Lighton(light);
+lighton.execute();
+Fan fan=new Fan();
+Fanon fanon=new Fanon(fan);
+fanon.execute();
+
+-> here the issue, is if user want to undo ,like in the interface we have execute and undo methode,so 
+if user wanna undo ,user need to remenver all the objects ,but we dont want that
+-> so will have Stack<Command> history;
+->lighton.execute()
+-> history.push(lighton);
+
+-> but to undo we have to have undo() in the Main that does
+if(!history.isEmpty())
+{
+  history.pop().undo();
+}
+
+-> but main should not have any methodes ,so we need somthing in between main and buttons
+-> so will create a remote that has Command cmd variable
+public class Remote{
+  Command cmd;
+  Stack<Command> history;
+  Remote(Command cmd)
+  {
+    this.cmd=cmd;
+    history=new Stack<>();
+  }
+  public void setCommand(Command cmd)
+  {
+    this.cmd=cmd;
+  }
+  public void click()
+  {
+    cmd.execute();
+  }
+
+  public void undo()
+  {
+    if(!history.isEmpty())
+    {
+      history.pop().undo();
+      return;
+    }
+    System.out.println("first do something to undo");
+  }
+}

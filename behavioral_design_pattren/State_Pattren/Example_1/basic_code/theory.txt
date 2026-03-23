@@ -1,0 +1,41 @@
+Let’s take a real-world example:
+
+👉 Think of a Music Player(class)
+
+A music player can be in different states:
+Playing 🎵(state)
+Paused ⏸️(state)
+Stopped ⏹️(state)
+And based on the current state, behavior changes.
+
+-> first thing is we will create a class MusicPlayer in that we have
+a variables like isPlaying ,isPaused,isStopped.
+-> but.... what if two of  the varibles are true,then it become invalid state ,
+which is not good.
+-> so we will have String state it stores "PLAYING" ,"PAUSED" ,"STOPPED"
+
+
+-> we have play and pause button 
+
+ISSUES:
+-> Code duplication ,currently we have 2 methodes ,in that only lot of code duplication
+happend.
+-> what if tommorrw new buttons come again we will have to write same code(scalability issues);
+-> curent we have only 3 states ,what if new state comes ,we have to modify the previous methodes
+which violets the open/closed principle again.
+
+
+ ROOT CAUSE 1: 
+ ->that is here state is just a data ,that is not a behaviour.
+🎯 One-line intuition
+-> If object can’t act → you keep asking questions
+-> If object can act → you just call it
+
+-> instead of String state,we need something like State state.
+-> so we Create a State Interface.
+
+
+ROOT CAUSE 2:
+-> if any new state comes like buffering we need to modify the alredy available buttons.
+-> this happend beacause music player  class has the behavior(play,pause buttons),so we need to take them out.
+-> “Because MusicPlayer owns all behaviors, any new state forces modification of existing code”
