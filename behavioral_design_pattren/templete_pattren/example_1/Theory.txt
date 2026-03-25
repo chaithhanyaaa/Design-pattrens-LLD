@@ -1,0 +1,67 @@
+Problem Statement:build a drink maker that makes the cofee and tea
+coffee:boil water -> add coffe powder -> add milk -> pour into the cup
+tea:boil water -> add tea leaves -> add milk -> pour in to the cup
+
+
+-------------------------------------------------------------------------
+
+DrinkMaker{
+  makeTea()
+  {
+    System.out.println("boil water");
+    System.out.println("add tea leaves");
+    System.out.println("add milk");
+    System.out.println("pour in to the cup");
+  }
+
+  makeCoffee()
+  {
+    System.out.println("boil water");
+    System.out.println("add coffe powder");
+    System.out.println("add milk");
+    System.out.println("pour in to the cup");
+
+  }
+}
+
+psvm{
+  DrinkMaker maker=new DrinkMaker();
+  maker.makeCoffee();
+}
+
+---------------------------------------------------------------------------------------------
+
+Issue 1: code duplication ,if incase you decided to add filterd water again need to chane multiple lines.
+Issue 2: if in case in the future you decided to add more drinks we need to add multiple methodes,class becomes huge.
+
+
+----------------------------------------------------------------------------------------------
+
+-> To solve the issue 1,i make separate methode like boild water(),addMil() etc.
+-> but still code duplication 
+
+makeTea()
+{
+  boilWater();
+  addMilk();
+  System.out.println("add Tea leaves");
+  addIntoCup();
+}
+
+makeCoffe()
+{
+  boilWater();
+  addMilk();
+  System.out.println("add coffee powder");
+  addIntoCup();
+}
+
+---------------------------------------------------------------------------------------
+-> we can still see the code duplication .
+-> so we need methode that prepares ,we will make addIngredeinet(),and this methode will be overrided by
+tea,coffee classes,so we need to have one parent class two child classes(Tea,Coffee);
+
+----------------------------------------------------------------------------------------
+
+-> we have the abs methode addIngrediant we call this in parent class and also we make that makeDrink() as final
+so that no child classes can override it ,override can leade to change the recipe or order of making the drinks.
