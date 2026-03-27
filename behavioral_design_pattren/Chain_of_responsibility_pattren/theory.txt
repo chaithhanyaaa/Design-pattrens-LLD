@@ -1,0 +1,80 @@
+1.what problem does this pattren solve?
+-> this pattren is very usefull when a request can be handled by one among many objects.
+-> we dont want sender to know :who exactly handles it,how many handlers exist,what order they are checked in.
+-> Chain of Responsibility lets multiple objects get a chance to handle a request by passing it along a chain.
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Example:-1
+Customer Support Ticket System
+
+A ticket can be of type:
+
+"BASIC"
+"BILLING"
+"FRAUD"
+
+And we want to send it to the correct support team.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+ISSUES:
+
+1. according single Responsibility principle a class should have only one Responsibility,here SupportSystem class is not only checking ticket type 
+it is also handling the bussiness logic,it would be good according to SRP it was doing the checking and passing the ticket to correspoinding class 
+however it voilets the open/closed principle.
+
+2. According to the open/closed principle ,a class should open for extension,but closed for modification.
+(no if else should be there).
+
+3. Tight Coupling
+-> Coupling = how strongly one class depends on another class
+-> If one class knows too much about other classes,
+or directly creates/uses them a lot… ,then they are tightly coupled.
+-> our SupportSystem knows:
+                    BasicSupport
+                    BillingSupport
+                    FraudSupport
+-> Because if anything changes in these classes or in how they are used…
+👉 TicketRouter may also need to change.
+
+4.no Flexible / Dynamic Request Flow
+-> imagine there is ticket - in issue is ""Fraud happened during payment"
+-> so here two system should handle it ,first BillingSupport and then it should pass to 
+FraudSupport ,but our naive approch does nt let you do this ,because there is no connection between supports .
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+OPTIMIZATION:
+-> now usually thigh coupling can be solved using a middle man ,but here if we use the middle and let is handdle
+now even middle man needs to have if-else ,so we start with one class that is ticketHandler ,it has handle methode
+-> it lest next.handle(ticket);
+-> it should also have the setNext()
+-> because we need to customize the order.
+
+-> here in the main we can customise the order as well .
+-> Main is coupled with other classes but it is okay as main is the clint
+
+-> if we want we can do this
+
+class SupportChainBuilder {
+    public SupportHandler buildChain() {
+        TicketHandler ticketHandler =new TicketHandler()
+        SupportHandler basic = new BasicSupport();
+        SupportHandler billing = new BillingSupport();
+        SupportHandler fraud = new FraudSupport();
+
+        ticketHandler.setNext(basic);
+        basic.setNext(billing);
+        billing.setNext(fraud);
+
+        return basic;
+    }
+}
+
+
+-> in the main we do this 
+
+SupportChainBuilder builder = new SupportChainBuilder();
+SupportHandler chain = builder.buildChain();
+
+chain.handle(ticket);
