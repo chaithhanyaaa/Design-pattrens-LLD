@@ -48,7 +48,7 @@ Instead of List<Car>, List<Bike> → use Vehicle
 ✔️ Avoids duplication
 ✔️ Easily extensible
 
--> here in Park(Vechile v) ,bais c code is if(type.equals("nearest)){} else{}
+-> here in doPark(Vechile v) ,basic code will be using  if(type.equals("nearest)){} else{}
 it is very hard to extend ,so we need some Stratergy pattren here
 
 -> interface Startergy{
