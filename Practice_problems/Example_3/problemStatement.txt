@@ -1,0 +1,37 @@
+Design a Vending Machine
+
+A vending machine should support the following:
+
+-> Functional Requirements:-
+The machine contains multiple products:
+Coke
+Pepsi
+Chips
+Biscuit
+
+-> Each product has:
+name
+price
+quantity
+
+-> A user should be able to:
+view available products
+select a product
+insert money
+buy the product
+cancel the transaction
+get refund if needed
+
+
+-> The machine should:
+check whether the selected product is available
+check whether enough money has been inserted
+dispense the product if payment is successful
+return change if extra money is inserted
+return refund if transaction is cancelled
+
+-> The machine should handle different states like:
+Idle
+Product Selected
+Payment Done / Ready to Dispense
+Out of Stock (if needed)
