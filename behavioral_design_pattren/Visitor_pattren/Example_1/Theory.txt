@@ -1,0 +1,103 @@
+-> Visitor Pattern is used when:
+
+you already have some objects
+and you want to perform different actions/operations on them
+and these operations may keep increasing in future
+
+
+Problem Statement:
+
+Very simple structure:
+
+-> Imagine you have a system with these object types:
+
+Text
+Image
+Table
+
+-> These are just different document parts.
+So a document editor may contain:
+one paragraph of text
+one image
+one table
+
+-> We want to perform different operations on these elements.”
+Example operations:
+
+Render on screen
+Export to PDF
+compress
+
+
+-> Basic approach is:
+
+classes:Text,Image,Table,DocumentSystem
+interface:Element{
+  render()
+  export()
+  compress()
+}
+
+-> so now in main 
+ Text text=new Text("hello");
+ DocumentSystem system=new DocumentSystem(text);
+ system.render();
+-> system also have all operations each executes element.corresponding_operation()
+
+
+-> here for simplicity we can ignore the sytem and directly do from the Main like:
+-no interface needed
+Text text=new Text("hello");
+text.render()
+text.compress()
+text.export()
+------------------------------------------------------------------------------------------------------------
+issue 1:
+-> violeting Single responsibility principle :here all the classes like Text,Image,Table has methodes like
+render(),compress(),export() here single class doing multiple things
+
+solution:
+-> take these out and make classes like:
+Render,compress,export they take Elment(interface) types objects through constructor
+-> Text text =new Text("hello")
+-> Render renderer =new Render(text);
+now renderer.render()
+-> now this render() methode has to check which object is like:
+  render()
+  {
+    if(element instanceOf Text)
+    {
+      // code
+    }
+    else if(elemnt instance of Image)
+    {
+      //code
+    }
+    else{
+      //code
+    }
+  }
+---------------------------------------------------------------------------------------------------------------------------------------------------
+new issue:it is violeting open /closed principle
+-> inorder to solve this in render class we will have render methodes (overloading)
+-> it has opeartion(Text text)
+          opeartion(Image img)
+          opeartion(Table table)
+-> now in the elemnt class like text,img,table do this
+Text{
+  Operator operator;
+  Text(Operation operation)
+  {
+    this.operation=opeartion;
+  }
+  void accept()
+  {
+    opeartor.opeartion(this);
+    //passing current object as arg
+  }
+  void setOpeartor(Operator opeartor)
+  {
+    this.operator=operator;
+  }
+}
+
